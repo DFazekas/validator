@@ -10,6 +10,7 @@ module.exports = {
   isPhone,
   isGreaterThan,
   isNotNullOrEmpty,
+  bodySchema,
 };
 
 function validator(rules) {
