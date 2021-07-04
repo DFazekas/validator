@@ -1,4 +1,22 @@
 {
     "name": "@devonfazekas/validator",
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "description": "Simplifies value validation",
+    "license": "MIT",
+    "repository": "DFazekas/validator",
+    "main": "index.js",
+    "keywords": [
+        "npm",
+        "package",
+        "devonfazekas"
+    ],
+    "scripts": {
+        "test": "mocha"
+    },
+    "dependencies": {
+        "mocha": "^9.0.2",
+        "prettier": "^2.3.2"
+    }
+
+
 }
