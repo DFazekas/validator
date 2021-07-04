@@ -10,7 +10,10 @@ describe("validator", () => {
   it("should fail with one property when `rules` is single failing rule.", () => {
     const failingRule = bodySchema(true, defaultLabel, defaultMsg);
     const actual = validator(failingRule);
-    const expected = { valve: "Valve the cake is a lie" };
+    const expected = {
+      hasErr: true,
+      errors: { valve: "Valve the cake is a lie" },
+    };
     assert.deepStrictEqual(actual, expected);
   });
 
@@ -18,7 +21,10 @@ describe("validator", () => {
     const failingRule = bodySchema(true, defaultLabel, defaultMsg);
     const passingRule = bodySchema(false, defaultLabel, defaultMsg);
     const actual = validator([failingRule, passingRule]);
-    const expected = { valve: "Valve the cake is a lie" };
+    const expected = {
+      hasErr: true,
+      errors: { valve: "Valve the cake is a lie" },
+    };
     assert.deepStrictEqual(actual, expected);
   });
 
@@ -29,9 +35,12 @@ describe("validator", () => {
     const failingRule3 = bodySchema(true, labels[2], defaultMsg);
     const actual = validator([failingRule1, failingRule2, failingRule3]);
     const expected = {
-      one: `${labels[0]} ${defaultMsg}`,
-      two: `${labels[1]} ${defaultMsg}`,
-      three: `${labels[2]} ${defaultMsg}`,
+      hasErr: true,
+      errors: {
+        one: `${labels[0]} ${defaultMsg}`,
+        two: `${labels[1]} ${defaultMsg}`,
+        three: `${labels[2]} ${defaultMsg}`,
+      },
     };
     assert.deepStrictEqual(actual, expected);
   });
@@ -55,14 +64,14 @@ describe("validator", () => {
   it("should pass when `rules` is a single passing rule.", () => {
     const validResponse = bodySchema(false, defaultLabel, defaultMsg);
     const actual = validator(validResponse);
-    const expected = {};
+    const expected = { hasErr: false, errors: {} };
     assert.deepStrictEqual(actual, expected);
   });
 
   it("should pass when `rules` is an array containing a single passing rule.", () => {
     const validResponse = bodySchema(false, defaultLabel, defaultMsg);
     const actual = validator([validResponse]);
-    const expected = {};
+    const expected = { hasErr: false, errors: {} };
     assert.deepStrictEqual(actual, expected);
   });
 
@@ -72,7 +81,7 @@ describe("validator", () => {
     const failingRule2 = bodySchema(false, labels[1], defaultMsg);
     const failingRule3 = bodySchema(false, labels[2], defaultMsg);
     const actual = validator([failingRule1, failingRule2, failingRule3]);
-    const expected = {};
+    const expected = { hasErr: false, errors: {} };
     assert.deepStrictEqual(actual, expected);
   });
 

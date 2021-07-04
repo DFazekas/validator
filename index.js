@@ -38,7 +38,7 @@ function validator(rules) {
   // Transmute into an optimized format.
   let result = {};
   errors.forEach((err) => (result[err.field] = err.msg));
-  return result;
+  return { hasErr: errors.length > 0, errors: result };
 }
 
 function validateSchema(rules) {
