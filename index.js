@@ -1,4 +1,5 @@
 const isEmail = require("./lib/isEmail");
+const isPhone = require("./lib/isPhone");
 const isGreaterThan = require("./lib/isGreaterThan");
 const bodySchema = require("./lib/bodySchema");
 const isNotNullOrEmpty = require("./lib/isNotNullOrEmpty");
@@ -6,6 +7,7 @@ const isNotNullOrEmpty = require("./lib/isNotNullOrEmpty");
 module.exports = {
   validator,
   isEmail,
+  isPhone,
   isGreaterThan,
   isNotNullOrEmpty,
 };
