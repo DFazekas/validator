@@ -27,23 +27,23 @@ function validator(rules) {
   }
 
   // Convert `rules` into an array.
-  let _rules = Array.isArray(rules) ? rules : [rules];
+  let _rules = Array.isArray(rules) ? [...rules] : [rules];
 
   // Filter out all passing rules, extracting the error messages.
+  let result = {};
   let errors = _rules
     .map((rule) => {
-      if (rule.hasErr) return { field: rule.field, msg: rule.errMsg };
+      return rule.failed ? { field: rule.field, error: rule.error } : null;
     }, [])
     .filter((e) => e);
+  errors.forEach((rule) => (result[rule.field] = rule.error));
 
-  // Transmute into an optimized format.
-  let result = {};
-  errors.forEach((err) => (result[err.field] = err.msg));
   return { hasErr: errors.length > 0, errors: result };
 }
 
 function validateSchema(rules) {
-  let _rules = Array.isArray(rules) ? rules : [rules];
+  // Clone `rules` to prevent mutation.
+  let _rules = Array.isArray(rules) ? [...rules] : [rules];
 
   const expected = bodySchema("", "", "");
   _rules.push(expected);
