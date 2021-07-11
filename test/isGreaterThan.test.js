@@ -15,8 +15,11 @@ describe("isGreaterThan", () => {
   });
 
   it("should throw error when arguments are not type integer.", () => {
+    // noinspection JSCheckFunctionSignatures
     assert.throws(() => isGreaterThan("a", 2));
+    // noinspection JSCheckFunctionSignatures
     assert.throws(() => isGreaterThan(1, "b"));
+    // noinspection JSCheckFunctionSignatures
     assert.throws(() => isGreaterThan("a", "b"));
   });
 

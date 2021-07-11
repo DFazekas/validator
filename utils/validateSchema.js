@@ -20,6 +20,7 @@ module.exports = function validateSchema(rules) {
     (keys, object) => keys.concat(Object.keys(object)),
     []
   );
+  // noinspection JSCheckFunctionSignatures
   const union = new Set(allKeys);
 
   // Verify each object contains the same number of keys as the set of all unique keys.

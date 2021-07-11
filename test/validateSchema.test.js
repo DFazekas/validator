@@ -11,26 +11,31 @@ describe("validateSchema", () => {
       { field: "", failed: false, passed: 4, error: null },
       { field: "", failed: false, passed: true, error: 4 },
     ];
+    // noinspection JSCheckFunctionSignatures
     assert.throws(
       () => validateSchema(rules),
       TypeError("Rule [1]: `field` property must be of type string.")
     );
+    // noinspection JSCheckFunctionSignatures
     assert.throws(
       () => validateSchema(rules[1]),
       TypeError("Rule [0]: `field` property must be of type string.")
     );
+    // noinspection JSCheckFunctionSignatures
     assert.throws(
       () => validateSchema(rules[2]),
       TypeError(
         "Rule [0]: `failed` and `passed` properties must have equal types."
       )
     );
+    // noinspection JSCheckFunctionSignatures
     assert.throws(
       () => validateSchema(rules[3]),
       TypeError(
         "Rule [0]: `failed` and `passed` properties must have equal types."
       )
     );
+    // noinspection JSCheckFunctionSignatures
     assert.throws(
       () => validateSchema(rules[4]),
       TypeError(

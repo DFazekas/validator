@@ -57,12 +57,14 @@ describe("validator", () => {
     function invalidRule() {
       return { hasErr: true, errMsg: "Should throw error" };
     }
+    // noinspection JSCheckFunctionSignatures
     assert.throws(() => validator([invalidRule()]));
   });
 
   // Pass conditions:
   it("should pass when `rules` is a single passing rule.", () => {
     const validResponse = bodySchema(false, defaultLabel, defaultMsg);
+    // noinspection JSCheckFunctionSignatures
     const actual = validator(validResponse);
     const expected = { hasErr: false, errors: {} };
     assert.deepStrictEqual(actual, expected);

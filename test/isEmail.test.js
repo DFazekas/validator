@@ -13,7 +13,9 @@ describe("isEmail", () => {
   });
 
   it("should throw error when arguments are not type string.", () => {
+    // noinspection JSCheckFunctionSignatures
     assert.throws(() => isEmail(4));
+    // noinspection JSCheckFunctionSignatures
     assert.throws(() => isEmail(false));
   });
 
