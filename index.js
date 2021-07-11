@@ -1,3 +1,4 @@
+const validateSchema = require("./utils/validateSchema");
 const isEmail = require("./lib/isEmail");
 const isPhone = require("./lib/isPhone");
 const isGreaterThan = require("./lib/isGreaterThan");
@@ -13,18 +14,14 @@ module.exports = {
   bodySchema,
 };
 
+/**
+ *
+ * @param {{field: string, failed: boolean, passed: boolean, error: (string|null)}[]|{field: string, failed: boolean, passed: boolean, error: (string|null)}} rules
+ * @returns {{errors: {}, hasErr: boolean}}
+ */
 function validator(rules) {
-  // Validation.
-  /// Ensure rules is not null or empty.
-  if (rules == null || (Array.isArray(rules) && rules.length === 0))
-    throw Error("Rules cannot be null or empty.");
-
-  /// Ensure all rules return an object that matches the schema.
-  if (validateSchema(rules) === false) {
-    throw Error(
-      "Some of the rules do not return the required response schema."
-    );
-  }
+  // Ensure all rules return an object that matches the schema.
+  validateSchema(rules);
 
   // Convert `rules` into an array.
   let _rules = Array.isArray(rules) ? [...rules] : [rules];
@@ -39,22 +36,4 @@ function validator(rules) {
   errors.forEach((rule) => (result[rule.field] = rule.error));
 
   return { hasErr: errors.length > 0, errors: result };
-}
-
-function validateSchema(rules) {
-  // Clone `rules` to prevent mutation.
-  let _rules = Array.isArray(rules) ? [...rules] : [rules];
-
-  const expected = bodySchema("", "", "");
-  _rules.push(expected);
-
-  // Reduce the array of rules into a set of unique keys from all the rules.
-  const allKeys = _rules.reduce(
-    (keys, object) => keys.concat(Object.keys(object)),
-    []
-  );
-  const union = new Set(allKeys);
-
-  // Verify each object contains the same number of keys as the set of all unique keys.
-  return _rules.every((object) => union.size === Object.keys(object).length);
 }
