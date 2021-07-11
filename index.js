@@ -3,14 +3,14 @@ const isEmail = require("./lib/isEmail");
 const isPhone = require("./lib/isPhone");
 const isGreaterThan = require("./lib/isGreaterThan");
 const bodySchema = require("./lib/bodySchema");
-const isNotNullOrEmpty = require("./lib/isNotNullOrEmpty");
+const isNotEmpty = require("./lib/isNotEmpty");
 
 module.exports = {
   validator,
   isEmail,
   isPhone,
   isGreaterThan,
-  isNotNullOrEmpty,
+  isNotEmpty,
   bodySchema,
 };
 
