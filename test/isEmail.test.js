@@ -7,7 +7,7 @@ describe("isEmail", () => {
   it("should fail when `email` is poorly formatted.", () => {
     const expected = bodySchema(true, "Email", "format is not valid");
     assert.deepStrictEqual(isEmail(""), expected);
-    assert.deepStrictEqual(isEmail("testtest.com"), expected);
+    assert.deepStrictEqual(isEmail("testTest.com"), expected);
     assert.deepStrictEqual(isEmail("test@testcom"), expected);
     assert.deepStrictEqual(isEmail("test@@test.com"), expected);
   });

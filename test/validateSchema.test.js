@@ -56,12 +56,14 @@ describe("validateSchema", () => {
         "Rule [1]: `failed` and `passed` properties cannot have equal values."
       )
     );
+    // noinspection JSCheckFunctionSignatures
     assert.throws(
       () => validateSchema(rules[1]),
       TypeError(
         "Rule [0]: `failed` and `passed` properties cannot have equal values."
       )
     );
+    // noinspection JSCheckFunctionSignatures
     assert.throws(
       () => validateSchema(rules[2]),
       TypeError(
@@ -75,7 +77,7 @@ describe("validateSchema", () => {
       bodySchema(true, "Value 1", "is required."),
       bodySchema(false, "Value 2", "is required."),
       bodySchema(false, "", ""),
-      { field: "", failed: false, passed: true, error: null },
+      { field: "", failed: false, passed: true, error: "" },
       {
         field: "value3",
         failed: true,

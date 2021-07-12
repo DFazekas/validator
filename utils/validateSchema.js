@@ -2,7 +2,7 @@ const bodySchema = require("../lib/bodySchema");
 
 /**
  * Checks that all provided rules return the required `bodySchema`.
- * @param {[{field: string, failed: boolean, passed: boolean, error: (string|null)}]|{field: string, failed: boolean, passed: boolean, error: (string|null)}} rules - The rules to be validated.
+ * @param {[{field: string, failed: boolean, passed: boolean, error: string}]|{field: string, failed: boolean, passed: boolean, error: string}} rules - The rules to be validated.
  */
 module.exports = function validateSchema(rules) {
   // Throw error if empty or null.

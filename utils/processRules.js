@@ -1,8 +1,8 @@
 /**
  * Process a response object for all the failing rules.
  *
- * @param rules - The rules to process.
- * @returns {{result: {}, errors: ({field: (string|number|*), error}|null)[]}} - The processed response object.
+ * @param {[{field: string, failed: boolean, passed: boolean, error: string}]|{field: string, failed: boolean, passed: boolean, error: string}} rules - The rules to process.
+ * @returns {{result: object, errors: ({field: string, error: string}|null)[]}} - The processed response object.
  */
 module.exports = function processRules(rules) {
   // Convert `rules` into an array.
