@@ -1,6 +1,6 @@
 {
     "name": "@devonfazekas/validator",
-    "version": "1.4.1",
+    "version": "1.4.2",
     "description": "Simplifies value validation",
     "license": "MIT",
     "repository": "DFazekas/validator",
