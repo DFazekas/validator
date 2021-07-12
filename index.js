@@ -1,4 +1,5 @@
 const validateSchema = require("./utils/validateSchema");
+const processRules = require("./utils/processRules");
 const isEmail = require("./lib/isEmail");
 const isPhone = require("./lib/isPhone");
 const isGreaterThan = require("./lib/isGreaterThan");
@@ -23,17 +24,6 @@ function validator(rules) {
   // Ensure all rules return an object that matches the schema.
   validateSchema(rules);
 
-  // Convert `rules` into an array.
-  let _rules = Array.isArray(rules) ? [...rules] : [rules];
-
-  // Filter out all passing rules, extracting the error messages.
-  let result = {};
-  let errors = _rules
-    .map((rule) => {
-      return rule.failed ? { field: rule.field, error: rule.error } : null;
-    }, [])
-    .filter((e) => e);
-  errors.forEach((rule) => (result[rule.field] = rule.error));
-
+  const { result, errors } = processRules(rules);
   return { hasErr: errors.length > 0, errors: result };
 }
